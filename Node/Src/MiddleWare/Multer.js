@@ -12,16 +12,15 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      Date.now() + "-" + file.originalname.replace(/\s+/g, "_")
-    );
+    cb(null, Date.now() + "-" + file.originalname.replace(/\s+/g, "_"));
   },
 });
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const extname = allowedTypes.test(
+    path.extname(file.originalname).toLowerCase()
+  );
   if (extname) {
     cb(null, true);
   } else {
