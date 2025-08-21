@@ -9,7 +9,7 @@ const {
 const upload = require("../Middleware/Multer");
 const { Register, AdminLogin } = require("../Controller/Admin");
 const Router = express.Router();
-Router.post("/Add", upload.array("Images", 2), AddProduct);
+Router.post("/Add", upload.array("Images", 5), AddProduct);
 Router.get("/Get", GetProducts);
 Router.put("/Update", UpdateProduct);
 Router.delete("/Delete", DeleteProduct);
