@@ -7,7 +7,7 @@ const ProductSchema = new mongoose.Schema({
   Product_Images: [String],
   Tags: {
     type: [String],
-    default: [],    
+    default: [],
   },
   Created_At: {
     type: Date,
