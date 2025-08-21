@@ -90,7 +90,7 @@ const DeleteProduct = async (req, res) => {
 
 const GetSingleProduct = async (req, res) => {
   try {
-    const { id } = req.query;
+    const { id } = req.params;
     if (!id) {
       return res.status(400).json({ message: "Id is required" });
     }
