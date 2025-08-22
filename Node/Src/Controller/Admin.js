@@ -70,8 +70,30 @@ const AdminLogin = async (req, res) => {
         console.log(error);
     }
 };
+const logout = async (req, res) => {
+    try {
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader) {
+            return res.status(400).json({ success: false, message: "Token missing" });
+        }
+        const token = authHeader.split(" ")[1];
+        const AdminLogout = await AdminModel.findOne({ token });
+        if (!AdminLogout) {
+            return res.status(404).json({ success: false, message: "Admin not found" });
+        }
+        AdminLogout.token = null;
+        await AdminLogout.save();
+
+        return res.status(200).json({ success: true, message: "Logged out successfully" });
+    } catch (error) {
+        console.error("Logout error:", error);
+    }
+};
+
 
 module.exports = {
     Register,
-    AdminLogin
+    AdminLogin,
+    logout
 };
